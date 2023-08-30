@@ -166,23 +166,20 @@ int pintos_init(void)
         else if (strcmp((char *)input, (char *)StringsToMatch[1]) == 0) //Check for "shutdown"
         {
           printf("Pintos OS is shutting down and exiting the QEMU...\n");
-          // shutdown();
-          usage();
+          shutdown_power_off ();
         }
 
         else if (strcmp((char *)input, (char *)StringsToMatch[2]) == 0) //Check for "time"
         {
-          // time_t Time;
-          // Time=rtc_get_time();
-          int64_t Time;
-          Time=timer_ticks();
-          printf("%lli seconds since Booted\n",Time/1000);
+          time_t Time;
+          Time=rtc_get_time();
+          
+          printf("%lu seconds since Booted\n",Time/1000);
         }
 
         else if (strcmp((char *)input, (char *)StringsToMatch[3]) == 0) //Check for "ram"
         {
-        printf("Pintos booting with %'" PRIu32 " kB RAM...\n",
-         init_ram_pages * PGSIZE / 1024);  
+        printf("Pintos booting with %'" PRIu32 " kB RAM...\n",init_ram_pages * PGSIZE / 1024);  
         }
 
         else if (strcmp((char *)input, (char *)StringsToMatch[4]) == 0) //Check for "thread"
